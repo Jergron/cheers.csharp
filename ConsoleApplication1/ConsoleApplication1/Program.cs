@@ -10,58 +10,55 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Hello, what's your name?");
-            string name = System.Console.ReadLine();          
-           
+            System.Console.WriteLine("Hello there! What's your name?");
+            string name = System.Console.ReadLine();
+            string lowerName = name.ToLower();
             System.Console.WriteLine("What's your birthday? (MM/DD)");
-            System.Console.ReadKey();
-
-            //Still working on cheers part 2
-            DateTime birthDate = DateTime.Parse(Console.ReadLine());
-            int Days = (DateTime.Now.Year * 365 + DateTime.Now.DayOfYear) - (birthDate.Year * 365 + birthDate.DayOfYear);
-            int Years = Days / 365;
-            string message = (Days >= 365) ? "Your age: " + Years + " years" : "Your age: " + Days + " days";
-
-            Console.WriteLine(message);
-
-            foreach (char letter in name)
+            string birthday = System.Console.ReadLine();
+            DateTime userDate = Convert.ToDateTime(birthday);
+            DateTime dateNow = DateTime.Now.Date;
+            System.Console.WriteLine("Hi, " + name);
+            foreach (char letter in lowerName)
             {
 
-               
-                    if (letter == 'h' || letter == 'H' || letter == 'a' || letter == 'A' ||
+                if (letter == 'h' || letter == 'H' || letter == 'a' || letter == 'A' ||
                     letter == 'l' || letter == 'L' || letter == 'f' || letter == 'F' ||
                     letter == 'n' || letter == 'N' || letter == 'o' || letter == 'O' ||
                     letter == 'r' || letter == 'R' || letter == 's' || letter == 'S' ||
                     letter == 'e' || letter == 'E' || letter == 'm' || letter == 'M' ||
                     letter == 'i' || letter == 'I' || letter == 'x' || letter == 'X')
-                    {
-                        System.Console.WriteLine("Give me an " + letter);
-                    }else
-                    {
-                        System.Console.WriteLine("Give me a " + letter);
-                    }
-                  
-               
-                
-               
-                System.Console.ReadKey();
-
+                {
+                    System.Console.WriteLine("Give me an.. " + letter);
+                    System.Console.ReadLine();
+                }
+                else
+                {
+                    System.Console.WriteLine("Give me a.. " + letter);
+                    System.Console.ReadLine();
+                }
             }
- 
-
-            System.Console.WriteLine(name.ToUpper() + " is.. GRAND!");
-
-            System.Console.ReadLine();
-            //Get the user's name and print it.
-            //Cheer the user on.
-            //For example, if name is "Bob", output should be:
-
-            //Give me a..b
-            //Give me an ... o
-            //Give me a ... b
-            //BOB is.. GRAND!
-
-
+            string newName = name.ToUpper();
+            System.Console.WriteLine(newName + " is.. GRAND!");
+            if (userDate == dateNow)
+            {
+                System.Console.WriteLine("Happy Birthday!");
+            }
+            else
+            if (userDate < dateNow)
+            {
+                userDate = userDate.AddYears(1);
+                System.Console.WriteLine("Your birthday is " + Math.Abs((userDate - dateNow).TotalDays) + " days away!");
+            }
+            else if (Math.Abs((userDate - dateNow).TotalDays) == 1)
+            {
+                System.Console.WriteLine("Your birthday is " + Math.Abs((userDate - dateNow).TotalDays) + " day away!");
+            }
+            else
+            {
+                System.Console.WriteLine("Your birthday is " + Math.Abs((userDate - dateNow).TotalDays) + " days away!");
+            }
+            System.Console.WriteLine("Press any key to exit");
+            System.Console.ReadKey();
         }
     }
 }
